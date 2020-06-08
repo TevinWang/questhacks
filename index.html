@@ -1,0 +1,1705 @@
+
+<!DOCTYPE html>
+<html lang="en">
+ <style>
+/**
+ * Variables
+ */
+$button-bg: #0D52E9;
+$speed: 0.6s;
+$delay: ($speed * .5);
+$easing: cubic-bezier(.55,0,.1,1);
+
+
+/**
+ * Overlay
+ * -- only show for tablet and up
+ */
+@media only screen and (min-width: 40em) {
+  
+  .modal-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background-color: rgba(#000, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    backface-visibility: hidden;
+    transition: opacity $speed $easing, visibility $speed $easing;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+} // media query
+
+
+
+/**
+ * Modal
+ */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+  background-color: #fff;
+  width: 600px;
+  max-width: 75rem;
+  min-height: 20rem;
+  padding: 1rem;
+  border-radius: 3px;
+  opacity: 0;
+  overflow-y: auto;
+  visibility: hidden;
+  box-shadow: 0 2px 10px rgba(#000, 0.1);
+  backface-visibility: hidden;
+  transform: scale(1.2);
+  transition: all $speed $easing;
+  
+  .close-modal {
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+    right: 15px;
+    opacity: 0;
+    backface-visibility: hidden;
+    transition: opacity $speed $easing, transform $speed $easing;
+    transition-delay: $delay;
+    
+    svg {
+      width: 1.75em;
+      height: 1.75em;
+    }
+  } // close modal
+  
+  .modal-content {
+    opacity: 0;
+    backface-visibility: hidden;
+    transition: opacity $speed $easing;
+    transition-delay: $delay;
+  } // content
+  
+  &.active {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+    
+    .modal-content {
+      opacity: 1;
+    }
+    
+    .close-modal {
+      transform: translateY(10px);
+      opacity: 1;
+    }
+  }
+}
+
+
+
+/**
+ * Mobile styling
+ */
+@media only screen and (max-width: 39.9375em) {
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0;
+    transform: scale(1.1);
+    padding: 0 !important;
+  }
+  
+  .close-modal {
+    right: 20px !important;
+  }
+} // media query
+.zoom {
+  padding: 20px;
+  transition: transform .2s;
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: 0 auto;
+  //margin: 0 auto;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.15); /* IE 9 */
+  -webkit-transform: scale(1.15); /* Safari 3-8 */
+  transform: scale(1.15); 
+}
+.zoom-sponsor {
+  display: block;
+  margin: 0 auto;
+  padding: 50px;
+  transition: transform .2s;
+  width: 250px;
+  height: 200px;
+  vertical-align: middle;
+
+}
+
+.zoom-sponsor:hover {
+  -ms-transform: scale(1.15); /* IE 9 */
+  -webkit-transform: scale(1.15); /* Safari 3-8 */
+  transform: scale(1.05);
+
+}
+.zoom-sponsor1 {
+  display: block;
+  margin: 0 auto;
+  padding: 50px;
+  transition: transform .2s;
+  width: 400px;
+  height: 300px;
+  vertical-align: middle;
+
+}
+
+.zoom-sponsor1:hover {
+  -ms-transform: scale(1.15); /* IE 9 */
+  -webkit-transform: scale(1.15); /* Safari 3-8 */
+  transform: scale(1.05);
+
+}
+.zoom-sponsor2 {
+  display: block;
+  margin: 0 auto;
+  padding: 50px;
+  transition: transform .2s;
+  width: 600px;
+  height: 300px;
+  vertical-align: middle;
+
+}
+
+.zoom-sponsor2:hover {
+  -ms-transform: scale(1.15); /* IE 9 */
+  -webkit-transform: scale(1.15); /* Safari 3-8 */
+  transform: scale(1.05);
+
+}
+
+</style> 
+<script>
+var elements = $('.modal-overlay, .modal');
+
+$('.button').click(function(){
+    elements.addClass('active');
+});
+
+$('.close-modal').click(function(){
+    elements.removeClass('active');
+});
+</script>
+ <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>QuestHacks : Home</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/icon" href="assets/images/favicon.ico"/>
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Slick slider -->
+    <link href="assets/css/slick.css" rel="stylesheet">
+    <!-- Theme color -->
+    <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">
+
+    <!-- Main Style -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Fonts -->
+
+    <!-- Open Sans for body font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
+	<!-- Montserrat for title -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });
+</script>
+  </head>
+  <body>
+
+  	<!-- Start Header -->
+	<header id="mu-hero" class="" role="banner">
+		<!-- Start menu  -->
+		<nav class="navbar navbar-fixed-top navbar-default mu-navbar">
+		  	<div class="container">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+
+			      <!-- Logo -->
+
+
+			    </div>
+
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      	<ul class="nav navbar-nav mu-menu navbar-right">
+			      	    <li><a href="#mu-hero">Home</a></li>
+				    <li><a href="#mu-about">About Us</a></li>
+				    <li><a href="#mu-sponsors">Sponsors</a></li>
+				    <li><a href="#mu-resources">Resources</a></li>
+				    <li><a href="#mu-schedule">Schedule</a></li>
+			            <li><a href="#mu-speakers">Team</a></li>
+                                    <li><a href="#mu-venue">Location</a></li>
+			            <li><a href="#mu-pricing">Goals</a></li>
+			            <li><a href="#mu-register">Register</a></li>
+			            <li><a href="#mu-contact">Contact</a></li>
+			      	</ul>
+			    </div><!-- /.navbar-collapse -->
+		  	</div><!-- /.container-fluid -->
+		</nav>
+		<!-- End menu -->
+
+		<div class="mu-hero-overlay">
+			<div class="container">
+				<div class="mu-hero-area">
+
+					<!-- Start hero featured area -->
+					<div class="mu-hero-featured-area">
+						<!-- Start center Logo -->
+						<div class="mu-logo-area">
+							<!-- text based logo -->
+							<!-- image based logo -->
+							<a class="mu-logo" href="#"><img src="assets/images/logo.jpg" alt="logo img"></a>
+						</div>
+						<!-- End center Logo -->
+						<div class="mu-hero-featured-content">
+							<h1>QUESTHACKS I</h1>
+							<h2>A student-run entrepreneurship-themed hackathon</h2>
+							<br/> 
+							<h2>Valley Christian High School</h2>
+							<p class="mu-event-date-line">16 November, 2019. San Jose, CA</p>
+							<div class="mu-event-counter-area">
+								<div id="mu-event-counter">
+
+								</div>
+								<img width=75px/>
+								<form action="#mu-register" class="mu-register-form">
+                                                                      <a class="mu-send-msg-btn"  href="#mu-register" style="font-size:30px"> Register Now </a>
+							</div>
+
+						</div>
+					</div>
+					<!-- End hero featured area -->
+
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- End Header -->
+	<div class="container">
+  <!-- Trigger the modal with a button -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Thanks for coming to QuestHacks!</h4>
+        </div>
+	<div class="modal-body" style="text-align:center">
+          <img style="width:200px;"src="assets/images/logo.jpg"></img>
+          <p style="text-align:center">Hope you had a fun time! We couldn't have done it without you all!</p>
+          <div class="row">
+	 	<div class="col-md-4">
+			<h2>70+</h2>
+			<p>Participants</h2>
+		</div>
+		<div class="col-md-4">
+			<h2>180+</h2>
+			<p>Signups</h2>
+		</div>
+		<div class="col-md-4">
+			<h2>18</h2>
+			<p>Project Submissions</p>
+		</div>
+	</div>
+	<p> <br> </p>
+	<a class="mu-send-msg-btn" target="_blank"href="https://drive.google.com/drive/folders/1E2EnLr29UnBoi3G8szOsrVJUfzwR6jnZ?usp=sharing">See Photos</a>
+	<p <Br> </p>
+	<hr>
+	<h2>Winners:</h2>
+	<div class="row">
+		<div class="col-md-4">
+			<h2 style="color:gold">1st Place</h2>
+			<p>Epidermeye</p>
+			<p>Rohan Viswanathan, Linus Zheng, Kashyap Chaturvedula, Thomas	Liang</p>
+		</div>
+		<div class="col-md-4">
+			<h2 style-"color:#aaa9ad">2nd Place</h2>
+			<p>Wakaru</p>
+			<p>Riley Kong, Franklin Wang, Oliver Ni</p>
+                </div>
+		<div class="col-md-4">
+			<h2 style="color:#cd7f32">3rd Place</h2>
+			<p>TopDoc</p>
+			<p>Vignav Ramesh, Ayaan Haque, Howard Huang</p>
+                </div>
+	</div>
+	<p><b>Best Prototype</b> - Epidermeye</p>
+	<p>Rohan Viswanathan, Linus Zheng, Kashyap Chaturvedula, Thomas Liang</p>
+	<p><b>Most Innovative</b> - GoViral</p>
+	<p>Dhruv Agarwal, Armeet Jatyani, Rushil Chadrupatia, Ashok Devireddy</p>
+	<p><b>Best Pitch</b> - Volcisco</p>
+	<p>Aditya Pawar, Roshan Bellary, Brayden Tam, Ryane Li</p>
+	<p><b>Best Education</b> - Equigap</p>
+	<p>Maya Gudino, Vivan Trinh, Vina Sheng, Vivian Le</p>
+	<p><b>Best Artistic</b> - Reach Out</p>
+	<p>Natasha Cordovadiba, Joon Luther, Jingzhi Hu</p>
+	<p><b>Best Teamwork</b> - Screenhive</p>
+	<p>Ethan Cao, Patrick Li, Aaron Shi, Jude Gadingan</p>
+	<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+	<main role="main">
+		<!-- Start About -->
+		<section id="mu-about">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-about-area">
+							<!-- Start Feature Content -->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="mu-about-left">
+										<img class="" src="assets/images/about.jpg" alt="Men Speaker">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mu-about-right">
+										<h2>About QuestHacks</h2>
+                    <p> </p>
+                    <p> </p>
+                    <p>QuestHacks is a 1-day entrepreneurship-themed hackathon event hosted at Valley Christian High School. </p>
+                    <p> </p>
+										<p>Our team consists of high school students who are both passionate about coding and entrepreneurship. We want to share our experiences and to help foster the connections between high school coders in the Bay Area at QuestHacks.</p>
+                    <p> </p>
+                    <p>Our mission is to provide aspiring coders and entrepreneurs with better opportunities, so they can take their project to the next level. We also want to provide the necessary skills in entrepreneurship and coding to succeed and thrive in their futures.</p>
+
+                    <!-- <h3>What we hope to achieve:</h3>
+                    <ul>
+                        <li>Promote the interaction between Valley Christian and other Bay area HS students.</li>
+                        <li>Teach participants skills related to programming and entrepreneurship.</li>
+                        <li>Provide opportunities for relationships between companies and talented students.</li>
+                        <li>Discover skillful coders in the Bay Area.</li>
+                        <li>Help participants gain experience through real world applications.</li>
+                        <li>Strengthen the programming community.</li>
+                    </ul> -->
+									</div>
+								</div>
+							</div>
+							<!-- End Feature Content -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End About -->
+		<section id="mu-sponsors" style="background-color:#f8f8f8;">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+                                                <div class="mu-sponsors-area">
+                                                        <div class="mu-title-area">
+                                                                <h2 class="mu-title">Our Partners</h2>
+                                                        </div>
+                                                        <div class="mu-speakers-content" style="background-color: white; border: 5px solid #DEE9FF">
+								<div class="row">
+                                                                        <div style="vertical-align: middle;" class="col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor2" width=500px; ><a href="https://vcs.net/" target="_blank"><img src="assets/images/vcslogo.png"  alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div style="vertical-align: middle;" class="col-md-6 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor1"><a href="https://www.vcs.net/page.cfm?p=1051" target="_blank"><img src="assets/images/beilogo.png"  alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div style="vertical-align: middle;" class="col-md-12 col-sm-12 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor1"><a href="https://www.hackplus.io/" target="_blank"><img src="assets/images/hackpluslogo.png"  alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+							<h2> <br> </h2>
+							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAAyCAQAAABl5zm7AAAAu0lEQVR42u3VMQ0AAAzDsJU/6V0FUcmGkCc5AGBeJAAAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAMHQAwdADA0AEAQwcAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAMHQAwdADA0AEAQwcAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAwdAAwdADA0AEAQwcA6gF3FQAzSyQXOAAAAABJRU5ErkJggg==">
+
+							 <div class="mu-title-area">
+                                                                <h2 class="mu-title">Our Gold Sponsors</h2>
+                                                        </div>
+                                                        <div class="mu-speakers-content" style="background-color: white; margin-bottom: 70px !important; border: 5px solid #FFFDDE">
+                                                                <div class="row"> 
+                                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor1"><a href="https://paloaltonetworks.com/" target="_blank"><img src="assets/images/PaloAlto.png"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://facebook.com/" target="_blank"><img src="assets/images/facebook.png"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://google.com/" target="_blank"><img src="https://images.theconversation.com/files/93616/original/image-20150902-6700-t2axrz.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1000&fit=clip"></a></div>
+                                                                                </div>
+                                                                        </div>
+								</div>
+
+                                                        </div>
+                                                        <div class="mu-title-area">
+                                                                <h2 class="mu-title">Our Sponsors</h2>
+                                                        </div>
+
+                                                        <!-- Start spnonsors brand logo -->
+                                                        <div class="mu-speakers-content" style="background-color: white;">
+                                                                <div class="row">
+									<div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://engage.isaca.org/siliconvalleychapter/home" target="_blank"><img src="assets/images/isaca.png"  alt="Brand Logo"></a></></div>
+                                                                                </div>
+                                                                        </div>
+									<h2> <br> </h2>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://corsair.com/" target="_blank"><img src="assets/images/corsair.png"  alt="Brand Logo"></a></></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://challengerocket.com/" target="_blank"><img src="assets/images/challengerocket.png"  alt="Brand Logo"></a></></div>
+                                                                                </div>
+                                                                        </div>
+									<div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://ultrapress.com/" target="_blank"><img src="assets/images/ultrapress.png"  alt="Brand Logo"></a></></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://makeschool.com/" target="_blank"><img src="assets/images/makeschool.png"  alt="Brand Logo"></a></></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://magoosh.com/" target="_blank"><img src="assets/images/magoosh.png"  alt="Brand Logo"></a></></div>
+                                                                                </div>
+                                                                        </div>
+									<div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://shawee.io/" target="_blank"><img src="assets/images/shawee.png"  alt="Brand Logo"></a></></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://www.wolfram.com/language/" target="_blank"><img src="assets/images/wolfram.png"  alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://balsamiq.com/" target="_blank"><img src="assets/images/balsamiq.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://cloudsploit.com/" target="_blank"><img src="assets/images/cloudsploit.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://www.eatbanza.com/" target="_blank"><img width=200px src="assets/images/banza.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://www.digitalocean.com/" target="_blank"><img src="assets/images/digitalocean2.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://www.omnigroup.com/" target="_blank"><img src="assets/images/omnigroup.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://www.clerky.com/" target="_blank"><img src="assets/images/clerky.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://www.sketch.com/" target="_blank"><img src="assets/images/sketch.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://www.stickergiant.com/" target="_blank"><img src="assets/images/stickergiant.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="http://artofproblemsolving.com/" target="_blank"><img src="assets/images/aops.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://www.sashido.io/en/" target="_blank"><img src="assets/images/sashido.png"  alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="http://bugsee.com/" target="_blank"><img src="assets/images/bugsee.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://www.desmos.com/" target="_blank"><img src="assets/images/desmos.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+									<div class="col-md-12 col-sm-12 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom-sponsor"><a href="https://www.launchx.com/" target="_blank"><img src="assets/images/launchx.png" alt="Brand Logo"></a></div>
+                                                                                </div>
+                                                                        </div>
+									                                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAAyCAQAAABl5zm7AAAAu0lEQVR42u3VMQ0AAAzDsJU/6V0FUcmGkCc5AGBeJAAAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAMHQAwdADA0AEAQwcAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAMHQAwdADA0AEAQwcAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAwdAAwdADA0AEAQwcA6gF3FQAzSyQXOAAAAABJRU5ErkJggg==">
+
+                                                               </div>
+                                                        </div>
+							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAAyCAQAAABl5zm7AAAAu0lEQVR42u3VMQ0AAAzDsJU/6V0FUcmGkCc5AGBeJAAAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAMHQAwdADA0AEAQwcAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAMHQAwdADA0AEAQwcAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAwdAAwdADA0AEAQwcA6gF3FQAzSyQXOAAAAABJRU5ErkJggg==">
+                                                        <!-- End spnonsors brand logo -->
+                                                        <div class="mu-title-area">
+                                                                <p>We are currently looking for potential sponsors.  If you are looking to sponsor us, please scroll down the contact section.</p>
+     	              						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAAyCAQAAABl5zm7AAAAu0lEQVR42u3VMQ0AAAzDsJU/6V0FUcmGkCc5AGBeJAAAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAMHQAwdADA0AEAQwcAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAMHQAwdADA0AEAQwcAQwcADB0AMHQAwNABwNABAEMHAAwdADB0ADB0AMDQAQBDBwAMHQAwdAAwdADA0AEAQwcA6gF3FQAzSyQXOAAAAABJRU5ErkJggg==">
+                      	                                        <a class="mu-send-msg-btn" href="SponsorshipPlan.pdf" target="_blank"><span>Link to Sponsorship Plan</span></a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <h2> <br> </h2>
+			<h2> <br> </h2>
+			<h2> <br> </h2>
+                </section>
+                <!-- End Sponsors -->
+
+
+
+
+		<!-- Start Video -->
+		<section id="mu-video">
+			<div class="mu-video-overlay">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="mu-video-area">
+								<h2>What is a Hackathon?</h2>
+								<a class="mu-video-play-btn" href="#"><i class="fa fa-play" aria-hidden="true"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Start Video content -->
+			<div class="mu-video-content">
+				<div class="mu-video-iframe-area">
+					<a class="mu-video-close-btn" href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+					<iframe width="854" height="480" src="https://www.youtube.com/embed/SCyFxcMsjnA" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			<!-- End Video content -->
+
+		</section>
+		<!-- End Video -->
+		<section id="mu-resources">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+                                                <div class="mu-contact-area">
+
+                                                        <div class="mu-title-area">
+                                                                <h2 class="mu-heading-title">Resources</h2>
+                                                                <p>Resources for the event!</p>
+                                                        </div>
+
+                                                        <!-- Start Contact Content -->
+                                                        <div class="mu-register-content" style="text-align:center">
+										<a class="mu-send-msg-btn" href="https://docs.google.com/document/d/14GUeI4HVtSV7Bn8PSdSUjFfdPt0WsFOZRS3xASXmbNs/edit?usp=sharing">Hacker's Guide</a>
+										<h2> <br> </h2>
+										<p>Use this to guide your projects. This includes a rubric for grading your projects.</p>
+										<h2> <br> </h2>
+										<a class="mu-send-msg-btn" href="https://docs.google.com/spreadsheets/d/1Ws-SiFUYkBAxpAiWHJaxtoF1OyQQ4pMnw_fRxNzel6c/edit?usp=sharing">Presentation Schedule</a>
+										<h2> <br> </h2>
+										<p>Check the time and location for your presentation.</p>
+										<h2> <br> </h2>
+										<a class="mu-send-msg-btn" href="https://docs.google.com/spreadsheets/d/11B4u_mhJvOJl5j-m3PGPzykh0B-vbQz7B7Atu93FfdY/edit?usp=sharing">Raffle Winners</a>
+										<h2> <br> </h2>
+										<p>Did you win the raffle while you were presenting? Check here. </p>						
+                                                        </div>
+                                                        <!-- End Contact Content -->
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+
+		<!-- Start Schedule  -->
+		<section id="mu-schedule">
+			<div class="container">
+				<div class="row">
+					<div class="colo-md-12">
+						<div class="mu-schedule-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-title">Schedule Detail</h2>
+								<p>QuestHacks includes workshops, speaker events, and judging in a 12 hour event. We also provide 3 meals for all hackathon participants.</p>
+							</div>
+
+							<div class="mu-schedule-content-area">
+								<!-- Nav tabs -->
+
+								<!-- Tab panes -->
+								<div class="tab-content mu-schedule-content">
+								    <div role="tabpanel" class="tab-pane fade mu-event-timeline in active" id="first-day">
+								    	<ul>
+										<li>
+                                                                                    	<div class="mu-single-event">
+                                                                                                <p class="mu-event-time">7.30 AM</p>
+                                                                                                <h3>Doors Open & Check In</h3>
+                                                                                        </div>
+                                                                                </li>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">8.00 AM</p>
+								    				<h3>Breakfast</h3>
+								    			</div>
+								    		</li>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">8.30 - 9.00 AM</p>
+								    				<h3>Opening Ceremony & Palo Alto Networks Keynote Speaker</h3>
+								    				<span>QuestHacks Team</span>
+								    			</div>
+								    		</li>
+										<li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">9.00 AM</p>
+								    				<h3>Coding Begins</h3>
+								    				<span>Start to build projects</span>
+								    			</div>
+								    		</li>
+										<li>
+                                                                                     	<div class="mu-single-event">
+                                                                                                <p class="mu-event-time">9.30 - 10.30 AM</p>
+                                                                                                <h3>Workshop 1: Programming Fundamentals</h3>
+                                                                                                <span>Baywei Chang</span>
+                                                                                        </div>
+                                                                                </li>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">12.00 - 1.00 PM</p>
+								    				<h3>Lunch</h3>
+								    			</div>
+								    		</li>
+										<li>
+                                                                                    	<div class="mu-single-event">
+                                                                                                <p class="mu-event-time">1.00 - 2.00 PM</p>
+                                                                                                <h3>Workshop 2: Tech Internship & Career</h3>
+                                                                                                <span>Make School</span>
+                                                                                        </div>
+                                                                                </li>
+
+										<li>
+                                                                                    	<div class="mu-single-event">
+                                                                                                <p class="mu-event-time">3.00 - 3.30 PM</p>
+                                                                                                <h3>Speaker Series: Subbu Subramanian</h3>
+												<span>Engineering Director at Facebook</span>
+                                                                                        </div>
+                                                                                </li>  
+										<li>
+                                                                                    	<div class="mu-single-event">
+                                                                                                <p class="mu-event-time">3.40 - 4.10 PM</p>
+                                                                                                <h3>Speaker Series: Make School</h3>
+                                                                                        </div>
+                                                                                </li>
+										<li>
+                                                                                    	<div class="mu-single-event">
+                                                                                                <p class="mu-event-time">5.00 - 5.30 PM</p>
+                                                                                                <h3>Speaker Series: Ron Dodge</h3>
+                                                                                                <span>Senior Director of Security Engineering at Palo Alto Networks</span>
+                                                                                        </div>
+                                                                                </li>
+						
+                        <li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">6.00 - 7.00 PM</p>
+								    				<h3>Dinner</h3>
+								    			</div>
+								    		</li>
+										<li>
+                                                                                    	<div class="mu-single-event">
+                                                                                                <p class="mu-event-time">6.30 - 7.30 PM</p>
+                                                                                                <h3>Workshop 3: GTM Strategy & Effective Presentations</h3>
+                                                                                                <span>Markus Okano</span>
+                                                                                        </div>
+                                                                                </li>
+										<li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">9.00 PM</p>
+								    				<h3>Coding Concludes</h3>
+								    			</div>
+								    		</li>
+                        <li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">9.00 - 11.00 PM</p>
+								    				<h3>Presenting & Judging</h3>
+								    			</div>
+								    		</li>
+                        <li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">11.00 - 11.30 PM</p>
+								    				<h3>Prize Ceremony</h3>
+								    			</div>
+								    		</li>
+								    	</ul>
+								    </div>
+								    <div role="tabpanel" class="tab-pane fade mu-event-timeline" id="second-day">
+								    	<ul>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">9.00 AM</p>
+								    				<h3>Breakfast</h3>
+								    			</div>
+								    		</li>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<img src="assets/images/speaker-1.jpg" alt="event speaker">
+								    				<p class="mu-event-time">10.00 AM</p>
+								    				<h3>Advanced SVG Animations</h3>
+								    				<span>By Karl Groves</span>
+								    			</div>
+								    		</li>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<img src="assets/images/speaker-2.jpg" alt="event speaker">
+								    				<p class="mu-event-time">11.00 AM</p>
+								    				<h3>Presenting Work with Confidence</h3>
+								    				<span>By Sarah Dransner</span>
+								    			</div>
+								    		</li>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<img src="assets/images/speaker-3.jpg" alt="event speaker">
+								    				<p class="mu-event-time">12.00 AM</p>
+								    				<h3>Keynote on UX & UI Design</h3>
+								    				<span>By Ned Stark</span>
+								    			</div>
+								    		</li>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">1.00 PM</p>
+								    				<h3>The End</h3>
+								    			</div>
+								    		</li>
+								    	</ul>
+								    </div>
+								    <div role="tabpanel" class="tab-pane fade mu-event-timeline" id="third-day">
+								    	<ul>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">9.00 AM</p>
+								    				<h3>Breakfast</h3>
+								    			</div>
+								    		</li>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<img src="assets/images/speaker-1.jpg" alt="event speaker">
+								    				<p class="mu-event-time">10.00 AM</p>
+								    				<h3>Advanced SVG Animations</h3>
+								    				<span>By Karl Groves</span>
+								    			</div>
+								    		</li>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<img src="assets/images/speaker-2.jpg" alt="event speaker">
+								    				<p class="mu-event-time">11.00 AM</p>
+								    				<h3>Presenting Work with Confidence</h3>
+								    				<span>By Sarah Dransner</span>
+								    			</div>
+								    		</li>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<img src="assets/images/speaker-3.jpg" alt="event speaker">
+								    				<p class="mu-event-time">12.00 AM</p>
+								    				<h3>Keynote on UX & UI Design</h3>
+								    				<span>By Ned Stark</span>
+								    			</div>
+								    		</li>
+								    		<li>
+								    			<div class="mu-single-event">
+								    				<p class="mu-event-time">1.00 PM</p>
+								    				<h3>The End</h3>
+								    			</div>
+								    		</li>
+								    	</ul>
+								    </div>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Schedule -->
+
+		<!-- Start Speakers -->
+		<section id="mu-speakers">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-speakers-area">
+							 <div class="mu-title-area">
+                                                                        <h2 class="mu-title">Our Speakers</h2>
+                                                                        <!--<p>We are currently in process of contacting potential speakers. If you would like to speak at QuestHacks please scroll down to the contacts section.-->
+                                                                </div>
+                                                                <div class="mu-speakers-content" style="background:white;">
+                                                                        <div class="row">
+                                                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                                        <img width=300px; src="assets/images/PrajaktaJagdale.png"></img>
+                                                                                </div>
+                                                                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                                                                        <h2> <br> </h2>
+                                                                                        <h2>Prajakta Jagdale</h2>
+                                                                                        <span style="color:dodgerblue">Senior Manager, Red Team @ Palo Alto Networks</span>
+                                                                                        <p <br> </p>
+                                                                                        <p style="font-size:14px;">Prajakta (PJ) Jagdale manages the Red Team and Application Penetration Testing programs at Palo Alto Networks. She leads a team of engineers responsible for simulating threat actor behavior against the company’s infrastructure to ensure security readiness and incident response efficacy. In addition to red teaming, her 12-year long career in information security has given Prajakta the opportunity to tackle challenges in the fields of application and software security research as well as product security and security architecture.</p>
+                                                                                </div>
+                                                                        </div>
+                                                                        <h2> <br> </h2>
+                                                                        <div class="row">
+                                                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                                        <img width=300px; src="assets/images/RonDodge.jpg"></img>
+                                                                                </div>
+                                                                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                                                                        <h2> <br> </h2>
+                                                                                        <h2>Ron Dodge</h2>
+                                                                                        <span style="color:dodgerblue">Senior Director, Information Security Engineering @ Palo Alto Networks</span>
+                                                                                        <p <br> </p>
+                                                                                        <p style="font-size:12px;">Ronald Dodge is currently the Senior Director for Information Security Engineering at Palo Alto Networks. In this role, Ron is responsible for building and securing a global security information infrastructure. Ron has a diverse background spanning over 20 years including IT leadership in government, academia, and industry; leading innovation in IT infrastructure/services, security education, and cyber research.
+
+Ron has served in leadership positions in many international consortiums including the Institute for Infrastructure Protection (I3P), the Colloquium for Information Systems Security Education (CISSE), the International Federation for Information Processing (IFIP), the IEEE/ACM 2013 Computing Curriculum working group, and the Honeynet Project. Ron was an early thought leader in cyber security exercises and in the delivery of security education using virtualization.
+
+Ron served over 28 years in the US Army with military assignments ranging from combat duties in an attack helicopter squadron to the CIO for the United States Military Academy, West Point. Ron received his Ph.D. from George Mason University, Fairfax, Virginia in Computer Science.  </p>
+                                                                                </div>
+                                                                        </div>
+                                                                        <h2> <br> </h2>
+                                                                        <div class="row">
+                                                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                                        <img width=300px; src="assets/images/MarkusOkano.jpg"></img>
+                                                                                </div>
+                                                                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                                                                        <h2> <br> </h2>
+                                                                                        <h2>Markus Okano</h2>
+                                                                                        <span style="color:dodgerblue">Public Cloud Engagement Representative, Google Cloud @ Palo Alto Networks</span>
+                                                                                        <p <br> </p>
+                                                                                        <p style="font-size:14px;">Markus Okano helps develop and execute the go-to-market strategy with Google Cloud at Palo Alto Networks. He works with his team to create multiple sales channels and drive awareness within the cybersecurity industry to increase joint revenue between both Google Cloud and Palo Alto Networks sellers. In addition to influencing this strategic relationship, Markus has worked with various start-up companies in the past supporting the overall execution of their sales strategy, funding efforts, and marketing approach.  </p>
+                                                                                </div>
+
+                                                                        </div>
+									                                                                        <h2> <br> </h2>
+                                                                        <div class="row">
+                                                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                                        <img width=300px; src="assets/images/bay.jpg"></img>
+                                                                                </div>
+                                                                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                                                                        <h2> <br> </h2>
+                                                                                        <h2>Bay Chang</h2>
+                                                                                        <span style="color:dodgerblue">User Interface Researcher</span>
+                                                                                        <p <br> </p>
+											<p style="font-size:14px;">I'm a user interface researcher who loves to build stuff that makes it easier and more fun to do things with the technology around us. My PhD research at Stanford focussed on programming languages and making programmer's lives easier -- and more delightful by weaving animation into the experience. At Xerox PARC, I worked on making it easy to write on the web with just a click and making it easy to read more details by morphing the page. At Google, I made email more conversational, finding stuff on the internet less taxing, and being near people an interesting thing for your computational world to know about. Oh, and I love to code and teach coding!<p>
+                                                                                </div>
+
+                                                                        </div>
+									<h2> <br> </h2>
+									<div class="row">
+                                                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                                                        <img width=300px; src="assets/images/speakersu.jpg"></img>
+                                                                                </div>
+                                                                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                                                                        <h2> <br> </h2>
+                                                                                        <h2>Subbu Subramanian</h2>
+                                                                                        <span style="color:dodgerblue">Engineering Director @ Facebook</span>
+                                                                                        <p <br> </p>
+											<p style="font-size:14px;">Subbu Subramanian is a Director of Engineering on the Spatial Computing team at Facebook. Subbu’s team develops fundamental technologies  for mapping the world all the way from satellite images to indoor environments using a variety of image and sensor-based data and advanced machine learning techniques.
+
+During his tenure at Facebook, Subbu has worked on a variety of projects at Facebook including connectivity, product and mobile performance, infrastructure efficiency, user growth, and advertiser management systems. Before joining Facebook, Subbu was a founding member of two startups in the Silicon Valley. Prior to that he was a Researcher at IBM's Almaden Research Center where he did research on relational and semi-structured data query processing. Subbu holds a PhD in Computer Science and is a author of 20 publications and 10 patents. Subbu hails from a small town in rural South of India which he visits often and credits with as a motivation for his work on mapping and connectivity.</p>
+                                                                                </div>
+
+                                                                        </div>
+                                                                        <h2> <br> </h2>
+							<div class="mu-title-area">
+								<h2 class="mu-title">Our Judges</h2>
+							</div>
+							<div class="row">
+								<div class="col-md-3 justify-content-center">
+									<img width=200px; src="assets/images/mccann.png"></img>
+								</div>
+								<div class="col-md-9"> 
+									<h2>Vanessa McCann</h2> 
+									<span style="color:dodgerblue;">Statistics Teacher @ Valley Christian</span>
+									<p> <br> </p>
+									<p style="font-size:14px; ">Vanessa McCann teaches Statistics and Mathematics for Business Applications at Valley Christian High School. Vanessa served on the executive team of the USC Marshall International Case Competition in college, and worked in finance before teaching full time. She is passionate about teaching students to use STEM and Business concepts to help others.</p>  
+							
+								</div>
+							</div>
+							<h2> <br> </h2>
+							<div class="row">
+                                                                <div class="col-md-3 justify-content-center">
+                                                                        <img width=200px; src="assets/images/judge2.jpg"></img>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                        <h2>Cyrus Bugwadia </h2>
+                                                                        <span style="color:dodgerblue;">Freshman @ UC Berkeley</span>
+                                                                        <p> <br> </p>
+									<p style="font-size:14px;">Cyrus Bugwadia is a freshman at UC Berkeley intending to major in Computer Science. He graduated Valley Christian High School in 2019, and was part of their robotics team as a programmer from his sophomore year through his senior year. Beyond robotics, he has several years of programming experience in Java and Python, ranging from image recognition neural networks to Minecraft modifications. Cyrus is excited to be back at VCHS for this event!</p>
+                                                                </div>
+                                                        </div>
+							<h2> <br> </h2>
+							 <div class="row">
+                                                                <div class="col-md-3 justify-content-center">
+                                                                        <img width=200px; src="assets/images/judge3.jpg"></img>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                        <h2>Jacob McMillan</h2>
+                                                                        <span style="color:dodgerblue;">Programming Teacher @ Valley Christian</span>
+                                                                        <p> <br> </p>
+									<p style="font-size:14px">Jake MacMilllan is employed at Valley Christian Schools as a teacher and software developer. He loves programming, and is excited to share his love with anyone who he has the chance to teach.</p>
+                                                                </div>
+                                                        </div>
+							<h2> <br> </h2>
+							 <div class="row">
+                                                                <div class="col-md-3 justify-content-center">
+                                                                        <img width=200px; src="assets/images/judge4.jpg"></img>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                        <h2>Vanessa Martinez</h2>
+                                                                        <span style="color:dodgerblue;">Associate Director of Educational Programs, R & D @ Valley Christian</span>
+                                                                        <p> <br> </p>
+									<p style="font-size:14px">Vanessa Martinez has been in non-profit education for over 15 years. With goals of broadening participation for students that have little to no access in STEM and Computer Science, she has worked through collective impact to provide opportunities and deepen impact. Vanessa is now the Associate Director of Educational Programs, Research & Development, with Valley Christian Schools. She is working to develop, grow, and implement current and new STEM and Computer Science programs within Valley Christian Schools and the Quest Institute.</p>
+                                                                </div>
+                                                        </div>
+							<h2> <br> </h2>
+                                                         <div class="row">
+                                                                <div class="col-md-3 justify-content-center">
+                                                                        <img width=200px; src="assets/images/judge5.jpg"></img>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                        <h2>Myron Shak</h2>
+                                                                        <span style="color:dodgerblue;">Chief Architect @ zGlue</span>
+                                                                        <p> <br> </p>
+									<p style="font-size:14px">Myron Shak is a System Design Architect who advises companies on the development of their SoC and IoT related products. Myron co-founded IoT startup zGlue and as it's Chief Architect was instrumental in raising its “Seed” and “Series-A” round of funding. Previous to zGlue, Myron was a Fellow at AMD, Director at TSMC, Sr Director at Transmeta and designer at various startups.  Myron has extensive experience in IC chip architecture and a bachelor's and master’s degree in Computer Architecture from Stanford University.</p>
+                                                                </div>
+                                                        </div>
+							<h2> <br> </h2>
+							<div class="row">
+                                                                <div class="col-md-3 justify-content-center">
+                                                                        <img width=200px; src="assets/images/JPanos.jpg"></img>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                        <h2>Johnny Panos</h2>
+                                                                        <span style="color:dodgerblue;">Computer Science Student @ Westmont College</span>
+                                                                        <p> <br> </p>
+									<p style="font-size:14px">John Panos is currently majoring in Computer Science at Westmont College. In 2019, he graduated from Valley Christian High School, and he was formerly part of their robotics team as a driver and programmer, in addition to working for their IT department. He has made various programs for Valley Christian and other companies in the Bay Area.</p>
+                                                                </div>
+                                                        </div>
+							<h2> <br> </h2>
+							 <div class="row">
+                                                                <div class="col-md-3 justify-content-center">
+                                                                        <img width=200px; src="assets/images/harikathi.jpg"></img>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                        <h2>Hari Kathi</h2>
+                                                                        <span style="color:dodgerblue;">Senior Engineering Manager @ Cisco Systems</span>
+                                                                        <p> <br> </p>
+                                                                        <p style="font-size:14px">Hari Kathi is an engineering leader in Cisco currently leading a team building cloud networking services. He has a master's degree in computer engineering and an M.B.A from Haas school of business, UC Berkeley.  He has held leadership roles in both product marketing and engineering.</p>
+                                                                </div>
+                                                        </div>
+
+							 <h2> <br> </h2>
+							 <div class="row">
+                                                                <div class="col-md-3 justify-content-center">
+                                                                        <img width=200px; src="assets/images/judge6.jpg"></img>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                        <h2>Muoi Tran Landivar</h2>
+                                                                        <span style="color:dodgerblue;">Security Awareness and Education Lead @ Palo Alto Networks</span>
+                                                                        <p> <br> </p>
+									<p style="font-size:14px">Muoi Tran Landivar is passionate about helping people of all ages understand the importance of building a culture of security in this digital age. Before joining Palo Alto Networks and making the leap into the exciting world of cybersecurity, Muoi had 18 years of communications experience and a background in journalism. She has been published in The New York Times, Fortune, The Mercury News, Stanford Social Innovation Review, Palo Alto Weekly, and other publications—and she is the editor of the Cybersecurity Career Guide.</p>
+                                                                </div>
+                                                        </div>
+
+							<h2> <br> </h2>
+							<div class="mu-title-area">
+                                                                <h2 class="mu-title">Advisor</h2>
+                                                        </div>
+							
+							 <div class="row">
+                                                                                <div class="col-md-2 col-sm-6 col-xs-12">
+                                                                                        <h2> <br> </h2>
+											<img width=200px; src="assets/images/sabrinalin.png"></img>
+                                                                                </div>
+                                                                                <div class="col-md-10 col-sm-12 col-xs-12">
+                                                                                        <h2> <br> </h2>
+                                                                                        <h2>Sabrina Lin</h2>
+                                                                                        <span style="color:dodgerblue">Entrepreneurship Teacher @ Valley Christian</span>
+                                                                                        <p <br> </p>
+											<p style="font-size:14px">I am a lifelong learner, willing to try anything that God has called me to do, including this latest role as a teacher at Valley Christian High School. This is my second  year teaching business classes here and it’s been a blast leading the President’s Business Challenge, stirring the entrepreneurial spirit within the students to compete with their startup business ideas through elimination rounds of pitches. Prior to teaching, I spent most of my 20+ years of corporate career at Hewlett-Packard as a Senior Director of Supply Chain for the North American Consumer PC division. Anything supply chain and operations get me really excited! I did a short gig at a startup where we rented textbooks to college students, before Amazon came along…. Then I served at my church’s youth group ministry. I guess hanging around youths is my thing after all! It’s been fun planning with the officers, and we hope that you all will have fun coding something amazing and entrepreneurial at our first ever QuestHacks!</p>
+                                                                                </div>
+							
+                                                                        </div>
+							<h2> <br> </h2>
+
+							<div class="mu-title-area">
+								<h2 class="mu-title">Our Team</h2>
+							</div>
+
+							<!-- Start spnonsors brand logo -->
+							 <div class="mu-speakers-content">
+							<div class="row">
+									<div class="col-md-3 col-sm-6 col-xs-12">
+										<div class="mu-single-speakers">
+											<div class="zoom"><img length=200px; width=200px; src="assets/images/TevinWang.png" alt="Brand Logo"></div>
+											<h2>Tevin Wang</h2>
+											<span style="color:blue">Grade 10</span>
+											<p>Director</p>
+											<img length=1px; width=50px; src="https://www.publicdomainpictures.net/pictures/30000/nahled/plain-white-background.jpg" alt="Brand Logo">
+										</div>
+									</div>
+
+									<div class="col-md-3 col-sm-6 col-xs-12">
+										<div class="mu-single-speakers">
+											<div class="zoom"><img length=200px; width=200px; src="assets/images/BharatKathi.png" alt="Brand Logo"></div>
+											<h2>Bharat Kathi</h2>
+											<span style="color:blue">Grade 11</span>
+											<p>Assistant Director</p>
+											<img length=1px; width=50px; src="https://www.publicdomainpictures.net/pictures/30000/nahled/plain-white-background.jpg" alt="Brand Logo"/>
+										</div>
+									</div>
+
+									<div class="col-md-3 col-sm-6 col-xs-12">
+										<div class="mu-single-speakers">
+											<div class="zoom"><img length=200px; width=200px; src="assets/images/SpencerHe.png" alt="Brand Logo"></div>
+											<h2>Spencer He</h2>
+											<span style="color:blue">Grade 10</span>
+											<p>Operations & Logistics</p>
+											<img length=1px; width=50px; src="https://www.publicdomainpictures.net/pictures/30000/nahled/plain-white-background.jpg" alt="Brand Logo">
+										</div>
+									</div>
+									 <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom"><img length=200px; width=200px; src="assets/images/YitianLi.png" alt="Brand Logo"></div>
+                                                                                        <h2>Yitian Li</h2>
+											<span style="color:blue">Grade 10</span>
+                                                                                        <p>Assistant Operations & Logistics</p>
+                                                                                        <img length=1px; width=50px; src="https://www.publicdomainpictures.net/pictures/30000/nahled/plain-white-background.jpg" alt="Brand Logo">
+                                                                                </div>
+                                                                        </div>
+									</div>
+									<div class="row">
+									<div class="col-md-3 col-sm-6 col-xs-12">
+										<div class="mu-single-speakers">
+											<div class="zoom"><img length=200px; width=200px; src="assets/images/cathychang.png" alt="Cathy Chang"></div>
+											<h2>Cathy Chang</h2>
+											<span style="color:blue">Grade 11</span>
+											<p>Sponsorships & PR</p>
+											<img length=1px; width=50px; src="https://www.publicdomainpictures.net/pictures/30000/nahled/plain-white-background.jpg" alt="Brand Logo">
+										</div>
+									</div>
+									 <div class="col-md-3 col-sm-6 col-xs-12">
+                                	                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom"><img length=200px; width=200px; src="assets/images/JonathanXia.png" alt="Brand Logo"></div>
+                                                                                        <h2>Jonathan Xia</h2>
+											<span style="color:blue">Grade 10</span>
+                                                                                        <p>Assistant Sponsorships & PR</p>
+                        	                                                        </div>
+                                                                        </div>									
+									<div class="col-md-3 col-sm-6 col-xs-12">
+										<div class="mu-single-speakers">
+											<div class="zoom"><img length=200px; width=200px; src="assets/images/BradZeng.png" alt="Brad Zeng"></div>
+											<h2>Brad Zeng</h2>
+											<span style="color:blue">Grade 10</span>
+												<p>Technology</p>
+											<img length=1px; width=50px; src="https://www.publicdomainpictures.net/pictures/30000/nahled/plain-white-background.jpg" alt="Brand Logo">
+										</div>
+									</div>
+									  <div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom"><img length=200px; width=200px; src="assets/images/JenniferSong.png" alt="Lillian Hao"></div>
+                                                                                        <h2>Jennifer Song</h2>
+												<span style="color:blue">Grade 10</span>
+                                                                                        <p>Assistant Technology</p>
+                                                                                        <img length=1px; width=50px; src="https://www.publicdomainpictures.net/pictures/30000/nahled/plain-white-background.jpg" alt="Brand Logo">
+                                                                                </div>
+                                                                        </div>
+									</div>
+	
+									<div class="row">
+									<div class="col-md-3 col-sm-6 col-xs-12">
+										<div class="mu-single-speakers">
+											<div class="zoom"><img length=200px; width=200px; src="assets/images/LeonYee.png" alt="Brand Logo"></div>
+											<h2>Leon Yee</h2>
+											<span style="color:blue">Grade 10</span>
+											<p>Marketing</p>
+											<img length=1px; width=50px; src="https://www.publicdomainpictures.net/pictures/30000/nahled/plain-white-background.jpg" alt="Brand Logo">
+										</div>
+									</div>
+									<div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom"><img length=200px; width=200px; src="assets/images/LillianHao.png" alt="Lillian Hao"></div>
+                                                                                        <h2>Lillian Hao</h2>
+											<span style="color:blue">Grade 11</span>
+                                                                                        <p>Assistant Marketing</p>
+                                                                                        <img length=1px; width=50px; src="https://www.publicdomainpictures.net/pictures/30000/nahled/plain-white-background.jpg" alt="Brand Logo">
+                                                                                </div>
+                                                                        </div>
+
+
+									<div class="col-md-3 col-sm-6 col-xs-12">
+										<div class="mu-single-speakers">
+											<div class="zoom"><img length=200px; width=200px; src="assets/images/alexgu.png" alt="Alex Gu"></div>
+											<h2>Alex Gu</h2>
+											<span style="color:blue">Grade 10</span>
+											<p>Finance</p>
+											<img length=1px; width=50px; src="https://www.publicdomainpictures.net/pictures/30000/nahled/plain-white-background.jpg" alt="Brand Logo">
+										</div>
+									</div>
+									
+
+									<div class="col-md-3 col-sm-6 col-xs-12">
+                                                                                <div class="mu-single-speakers">
+                                                                                        <div class="zoom"><img length=200px; width=200px; src="assets/images/LucyQian.png" alt="Brand Logo"></div>
+                                                                                        <h2>Lucy Qian</h2>
+											<span style="color:blue">Grade 11</span>
+                                                                                        <p>Assistant Finance</p>
+                                                                                </div>
+                                                                        </div>
+									</div>
+									<!-- <div class="col-md-3 col-sm-6 col-xs-12">
+										<div class="mu-single-speakers">
+											<div class="zoom"><img length=200px; width=200px; src="assets/images/replacement.png" alt="Brand Logo"></div>											
+											<h2>Dylan Starink</h2>
+											<p>Assistant Technology</p>
+											<img length=1px; width=50px; src="https://www.publicdomainpictures.net/pictures/30000/nahled/plain-white-background.jpg" alt="Brand Logo">
+										</div>
+									</div -->
+<!--								<div class="mu-speakers-slider">
+									<div class="mu-single-speakers">
+										<img src="assets/images/speaker-1.jpg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<h3>TBD</h3>
+											<p>TBD</p>
+											<ul class="mu-single-speakers-social">
+												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+												<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+											</ul>
+										</div>
+									</div> -->
+								</div> 
+
+								</div> 
+							</div> 
+						</div> 
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Speakers -->
+
+		<!-- Start Venue -->
+		<section id="mu-venue">
+			<div class="mu-venue-area">
+				<div class="row">
+
+					<div class="col-md-6">
+						<div class="mu-venue-map">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1242.7879090761132!2d-121.82624695297653!3d37.276125540961125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808e321167b16b7f%3A0x2ca32a348df964ae!2sValley+Christian+HS!5e0!3m2!1sen!2sus!4v1565142297472!5m2!1sen!2sus" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="mu-venue-address">
+							<h2>VENUE <i class="fa fa-chevron-right" aria-hidden="true"></i></h2>
+							<h3>Conservatory Hall</h3>
+							<h4>100 Skyway Dr, San Jose CA 95111</h4>
+							<p>Conservatory Hall in Valley Christian High School. Used for school events, concerts, and much more.</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<!-- End Venue -->
+
+		<!-- Start Pricing  -->
+		<section id="mu-pricing">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-pricing-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-title">Our Goals</h2>
+							</div>
+
+							<div class="mu-pricing-conten">
+								<div class="row">
+
+									<!-- single price item -->
+									<div class="col-md-4">
+										<div class="mu-single-price">
+											<h3 class="mu-price-title">INTERACT</h3>
+											<ul>
+												<li type="square">Promote the interaction between Valley Christian and other Bay area HS students.</li>
+
+												<li type="square">Discover skillful coders in the Bay Area.<br></li>
+												<li type="square">Provide opportunities for relationships between companies and talented students.</li>
+											</ul>
+										</div>
+									</div>
+									<!-- / single price item -->
+
+									<!-- single price item -->
+									<div class="col-md-4">
+										<div class="mu-single-price mu-popular-price">
+											<h3 class="mu-price-title">EDUCATE</h3>
+											<ul>
+												<li>Teach participants skills related to programming and entrepreneurship.</li>
+												<li>Help participants gain experience through real world applications.</li>
+												<li>Allow participants to practice and apply presentational skills.</li>
+											</ul>
+										</div>
+									</div>
+									<!-- / single price item -->
+                  <!-- single price item -->
+									<div class="col-md-4">
+										<div class="mu-single-price mu-best-price">
+											<h3 class="mu-price-title">INCUBATE</h3>
+											<ul>
+												<li>Take participants' projects to the next level.</li>
+												<li>Provide best projects with resources to continue development.</li>
+												<li>Allow gifted participants to have access to mentors/guidance for their projects.</li>
+											</ul>
+										</div>
+									</div>
+									<!-- / single price item -->
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Pricing -->
+
+		<!-- Start Register  -->
+		<section id="mu-register">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-register-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-title">Register for QuestHacks</h2>
+								<p>QuestHacks is currently open to registration. QuestHacks is completely free. We are currently only accepting High School students in the Bay Area. If you match this criteria, you are able to participate in QuestHacks.</p>
+							
+							</div>
+
+							<div class="mu-register-content">
+								<form action="https://forms.gle/iSto9HwSUDfefUrb7" class="mu-register-form">
+									<!-- <div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="Your Full Name" id="name" name="name" required="">
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<input type="email" class="form-control" placeholder="Enter Your Email" id="email" name="email" required="">
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="Your Phone Number" id="telephone" name="telephone" required="">
+											</div>
+										</div>
+										<div class="col-md-6">
+
+										<div class="form-group">
+											<select class="form-control" name="ticket" id="ticket">
+												<option value="0">Basic ($12)</option>
+												<option value="1">Standard ($22)</option>
+												<option value="2">Premium ($45)</option>
+											</select>
+										</div>
+										</div>
+									</div> -->
+									<div class="row">
+										<div class="col-md-6">
+											<h2 style="color:white"> Participant Registration: </h2>
+											<p style="color: red;">NOTICE: We are officially at max capacity. Please register to join the waitlist. <p>
+											<p> <br> <p>
+											<h2> <br> <h2>
+											<a type="submit" class="mu-send-msg-btn" href="https://forms.gle/iSto9HwSUDfefUrb7" target="_blank">Link to Waitlist Form</a>
+										</div>
+										<div class="col-md-6">
+											<h2 style="color:white"> Volunteer Registration: </h2>
+                                                                                        <p> Our volunteer registration form is open! Sign up via the form below.<p>
+											<p> <br> <p>
+											<h2> <br> </h2>
+											<a type="submit" class="mu-send-msg-btn" href="https://forms.gle/krX8f2eFvYQeEtj18" target="_blank">Link to Form</a>
+										</div>
+									</div>
+
+									<h2> <br> </h2>
+									<a href="RulesRequirements.pdf" style="color:dodgerblue; font-size:10px;"><h2><font size="4"> Click <u>here</u> to view our Rules & Requirements </font></h2></a>
+					            </form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Register -->
+
+		<!-- Start FAQ -->
+		<section id="mu-faq">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-faq-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-title">FAQ</h2>
+								<p>Many people have questions about QuestHacks. Here are those answers.</p>
+							</div>
+
+							<div class="mu-faq-content">
+
+								<div class="panel-group" id="accordion">
+
+							        <div class="panel panel-default">
+							          <div class="panel-heading">
+							            <h4 class="panel-title">
+							              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true">
+							                <span class="fa fa-angle-down"></span> What is QuestHacks?
+							              </a>
+							            </h4>
+							          </div>
+							          <div id="collapseOne" class="panel-collapse collapse in">
+							            <div class="panel-body">
+							              QuestHacks is a completely free high school hackathon supporting 100 participants hosted at Valley Christian High School. We hope to help particpants practice and develop entrepreneurship and programming skills at our event.
+							            </div>
+							          </div>
+							        </div>
+
+							        <div class="panel panel-default">
+							          <div class="panel-heading">
+							            <h4 class="panel-title">
+							              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+							                <span class="fa fa-angle-up"></span> Has QuestHacks been done before?
+							              </a>
+							            </h4>
+							          </div>
+							          <div id="collapseTwo" class="panel-collapse collapse">
+							            <div class="panel-body">
+							              No, this is our first year of running a hackathon at Valley Christian High School. This small, 1 day  100 participant event will be just the beginning. We want to expand into more participants and a longer event if this event goes well.
+							            </div>
+							          </div>
+							        </div>
+
+							        <div class="panel panel-default">
+							          <div class="panel-heading">
+							            <h4 class="panel-title">
+							              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+							                <span class="fa fa-angle-up"></span> What will be provided at the event?
+							              </a>
+							            </h4>
+							          </div>
+							          <div id="collapseThree" class="panel-collapse collapse">
+							            <div class="panel-body">
+							              We will be providing 3 meals: breakfast, lunch, and dinner. We will also hand out swag; such as t-shirts, stickers, or water bottles. Laptops will not be provided, so make sure to bring your own.
+							            </div>
+							          </div>
+							        </div>
+
+							        <div class="panel panel-default">
+							          <div class="panel-heading">
+							            <h4 class="panel-title">
+							              <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+							                <span class="fa fa-angle-up"></span> What prizes will be given?
+							              </a>
+							            </h4>
+							          </div>
+							          <div id="collapseFour" class="panel-collapse collapse">
+							            <div class="panel-body">
+									Prizes for winners:
+									<li>The Wolfram Award: a year of Wolfram|One Personal Edition plus a one-year subscription to Wolfram|Alpha Pro</li>
+									<li>Google Cloud Credits</li>
+									<li>Qwiklabs Tokens</li>
+									<li>$200 in credits to Bugsee services</li>
+									<li>4 months of CloudSploit Premium Service</li>
+									<li>Pro license for OmniGraffle</li>
+									<li>$25 AOPS Gift Certificate</li>
+									<li>Digitial Ocean Credits</li>
+									<li>Sketch License</li>
+							            </div>
+							          </div>
+							        </div>
+								
+								 <div class="panel panel-default">
+                                                                  <div class="panel-heading">
+                                                                    <h4 class="panel-title">
+                                                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                                                                        <span class="fa fa-angle-up"></span> What participant gifts will be given?
+                                                                      </a>
+                                                                    </h4>
+                                                                  </div>
+                                                                  <div id="collapseSix" class="panel-collapse collapse">
+                                                                    <div class="panel-body">
+								    Participant Gifts:
+									<li>QuestHacks water bottle, t-shirt, stickers, pens, and drawstring bags</li>
+									<li>12 months of credits for Sashido</li>
+									<li>Wolfram|One for 30 days</li>
+									<li>4 months of CloudSploit Basic service($8 per coupon)</li>
+									<li>90 day extended trial for Balsamiq Cloud</li>
+									<li>Desmos swag</li>
+									<li>Sticker Giant Stickers</li>
+									<li>Sketch swag</li>
+									<li>Digital Ocean Stickers</li>
+									<li>Banza coupons</li>
+									<li>Sketch 30-day free trial</li>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+								<div class="panel panel-default">
+                                                                  <div class="panel-heading">
+                                                                    <h4 class="panel-title">
+                                                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                                                                        <span class="fa fa-angle-up"></span> What are the raffle prizes?                                  
+                                                                      </a>
+                                                                    </h4>
+                                                                  </div>
+                                                                  <div id="collapseSeven" class="panel-collapse collapse">
+                                                                    <div class="panel-body">
+                                                                        Raffles	for attending speaker events and workshops:
+                                                                        <li>2 coupons of 4 months of CloudSploit Plus service</li>
+                                                                        <li>3 Sketch licenses</li>
+                                                                        <li>2 Magoosh subscriptions</li>
+                                                                        <li>3 free Corsair keyboards</li>
+                                                                        <li>3 free Corsair mice</li>
+                                                                  </div>
+                                                                </div>
+
+
+                                                            </div>
+							        <div class="panel panel-default">
+							          <div class="panel-heading">
+							            <h4 class="panel-title">
+							              <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+							                <span class="fa fa-angle-up"></span> What's so special about QuestHacks versus other hackathons?
+							              </a>
+							            </h4>
+							          </div>
+							          <div id="collapseFive" class="panel-collapse collapse">
+							            <div class="panel-body">
+							              Unlike other events, we want to foster the growth of your ideas and to turn your ideas into reality. QuestHacks is an event of people who want to come together to solve a problem. We hope to promote entrepreneurial skills like pitching to judges and coming up with ways to solve problems.
+							          </div>
+							        </div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End FAQ -->
+
+		<!-- Start Contact -->
+		<section id="mu-contact" style="background-color:white; margin-top: 150px; margin-bottom:150px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-contact-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-heading-title">Contact Us</h2>
+								<p>If you have any inquiries, you can contact us here, or by email at info@questhacks.org</p>
+							</div>
+
+							<!-- Start Contact Content -->
+							<div class="mu-contact-content">
+								<div class="row">
+
+								<div class="col-md-12">
+									<div class="mu-contact-form-area">
+										<div id="form-messages"></div>
+											<form id="ajax-contact" method="post" action="mailer.php" class="mu-contact-form">
+												<div class="form-group">
+													<input type="text" class="form-control" placeholder="Name" id="name" name="name" required>
+												</div>
+												<div class="form-group">
+													<input type="email" class="form-control" placeholder="Enter Email" id="email" name="email" required>
+												</div>
+												<div class="form-group">
+													<textarea class="form-control" placeholder="Message" id="message" name="message" required></textarea>
+												</div>
+												<button type="submit" class="mu-send-msg-btn"><span>SUBMIT</span></button>
+								                        </form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End Contact Content -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Contact -->
+	<!-- modal -->
+
+<div class="modal-overlay">
+  <div class="modal">
+    
+    <a class="close-modal">
+      <svg viewBox="0 0 20 20">
+        <path fill="#000000" d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z"></path>
+      </svg>
+    </a><!-- close modal -->
+
+    <div class="modal-content">
+      <h3>Some content here</h3>
+    </div><!-- content -->
+    
+  </div><!-- modal -->
+</div><!-- overlay -->
+	</main>
+
+	<!-- End main content -->
+
+
+	<!-- Start footer -->
+	<footer id="mu-footer" role="contentinfo">
+			<div class="container">
+				<div class="mu-footer-area">
+					<div class="mu-footer-top">
+						<div class="mu-social-media">
+							<a href="https://www.facebook.com/QuestHacks-111338903557166/"><i class="fa fa-facebook"></i></a>
+							<a href="https://twitter.com/Quest_Hacks"><i class="fa fa-twitter"></i></a>
+							<a href="https://www.linkedin.com/company/40861662/"><i class="fa fa-linkedin"></i></a>
+							<a href="https://www.youtube.com/channel/UC7GEYwKxPocHZVJ_YehIedg"><i class="fa fa-youtube"></i></a>
+						</div>
+					</div>
+					<div class="mu-footer-bottom">
+						<p class="mu-copy-right">Thanks for checking out <a rel="nofollow" href="http://questhacks.org">questhacks.org</a></p>
+					</div>
+				</div>
+			</div>
+
+	</footer>
+	<!-- End footer -->
+
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
+	<!-- Slick slider -->
+    <script type="text/javascript" src="assets/js/slick.min.js"></script>
+    <!-- Event Counter -->
+    <script type="text/javascript" src="assets/js/jquery.countdown.min.js"></script>
+    <!-- Ajax contact form  -->
+    <script type="text/javascript" src="assets/js/app.js"></script>
+
+
+    <!-- Custom js -->
+	<script type="text/javascript" src="assets/js/custom.js"></script>
+ 
+
+
+    <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '69f6dd22-8290-4288-ab8c-d6371c3d2462', f: true }); done = true; } }; })();</script>
+  </body>
+</html>
